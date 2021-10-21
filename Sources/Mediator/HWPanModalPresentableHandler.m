@@ -484,6 +484,10 @@ static NSString *const kScrollViewKVOContentOffsetKey = @"contentOffset";
  * ONLY When otherGestureRecognizer is panGestureRecognizer, and target gestureRecognizer is panGestureRecognizer, return YES.
  */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    if ([otherGestureRecognizer.view isKindOfClass:UITableViewCell.class]) {
+        return NO;
+    }
     if ([gestureRecognizer isKindOfClass:UIPanGestureRecognizer.class]) {
         return [otherGestureRecognizer isKindOfClass:UIPanGestureRecognizer.class];
     }
